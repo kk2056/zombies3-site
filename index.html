@@ -1,63 +1,29 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Zombies3 — Start Game & GA</title>
-  <meta name="description" content="Zombies3: 点击开始游戏发送 start_game 事件到 GA4。" />
-  <link rel="canonical" href="https://zombies3.promax.it.com/" />
-  <meta name="google-site-verification" content="leDQzEtRDEZmD6tu26aTURAK8hZdtEtWCQSgGavYYvg" />
-  <!-- GA4: Measurement ID = G-J8GHJM9XN5 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J8GHJM9XN5"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-J8GHJM9XN5');
-    function sendTestEvent(){
-      try{
-        gtag('event', 'test_event', {
-          'event_category': 'debug',
-          'event_label': 'page_load_test',
-          'value': 1,
-          'debug_mode': true
-        });
-        console.log('GA test_event sent');
-      } catch(e){ console.warn('GA send error', e); }
-    }
-    window.addEventListener('load', function(){ setTimeout(sendTestEvent, 600); });
-  </script>
-  <style>
-    body{font-family:Arial,Helvetica,sans-serif;margin:0;background:#081018;color:#eef2f6;padding:28px}
-    .wrap{max-width:980px;margin:0 auto;background:#071226;padding:20px;border-radius:8px}
-    h1{margin:0 0 10px;font-size:26px}
-    p{color:#cbd5e1}
-    .btn{display:inline-block;padding:10px 16px;background:#ff5722;color:#fff;border-radius:8px;text-decoration:none}
-    footer{margin-top:16px;color:#94a3b8;font-size:13px}
-  </style>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Space — Demo Site & GA</title>
+<meta name="description" content="Demo site"/>
+<!-- GA4 Measurement ID: G-J8GHJM9XN5 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J8GHJM9XN5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-J8GHJM9XN5', { 'cookie_domain': 'promax.it.com' });
+</script>
+<style>body{font-family:Arial;background:#071226;color:#eef;padding:28px}.wrap{max-width:900px;margin:0 auto;background:#081828;padding:20px;border-radius:8px}.btn{background:#ff5722;color:#fff;padding:10px;border-radius:6px;text-decoration:none}</style>
 </head>
 <body>
-  <div class="wrap">
-    <h1>Zombies3 — Start Game & GA</h1>
-    <p>点击“开始游戏”将上报 <code>start_game</code> 事件到 Google Analytics（GA4）。页面加载时会发送一个 <code>test_event</code> 便于验证。</p>
-    <a id="start-game-btn" class="btn" href="game.html">开始游戏</a>
-    <p class="note">注意：请在无痕/隐身窗口测试，避免广告拦截插件影响。</p>
-    <footer>© 2025 Promax</footer>
-  </div>
-  <script>
-    document.getElementById('start-game-btn').addEventListener('click', function(e){
-      try {
-        gtag('event', 'start_game', {
-          'event_category': 'engagement',
-          'event_label': 'start_game_button',
-          'value': 1,
-          'debug_mode': true
-        });
-        console.log('GA event: start_game sent');
-      } catch(err) {
-        console.warn('GA event error', err);
-      }
-    });
-  </script>
+<div class="wrap">
+<h1>Space — Demo Site & GA</h1>
+<p>Click below to send a start_game event to GA4.</p>
+<a id="start-game-btn" class="btn" href="game.html">开始游戏</a>
+</div>
+<script>
+document.getElementById('start-game-btn').addEventListener('click', function(){
+  try{ gtag('event','start_game',{'event_category':'engagement','event_label':'start_button','value':1,'send_to':'G-J8GHJM9XN5'}); console.log('GA event: start_game sent'); }catch(e){console.warn(e);}
+});
+window.addEventListener('load', function(){try{ gtag('event','test_event',{'event_category':'debug','event_label':'page_load','send_to':'G-J8GHJM9XN5'}); console.log('GA test_event sent'); }catch(e){}});
+</script>
 </body>
 </html>
